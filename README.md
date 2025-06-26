@@ -34,6 +34,19 @@
 - ⚡ **Performance Optimization**  
   Improve script injection and DOM manipulation performance.
 
+- 🚀 **To be safe, you can define multiple icons like this:**
+
+json
+Copy
+Edit
+"icons": {
+  "16": "icons/icon16.png",
+  "48": "icons/icon48.png",
+  "96": "icons/icon96.png",
+  "128": "icons/icon128.png"
+}
+That way, Chrome chooses the most appropriate one depending on context and screen resolution (especially for Retina/4K displays).
+
 ---
 
 ## 🛠️ Development
