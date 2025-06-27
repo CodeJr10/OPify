@@ -4,6 +4,7 @@
 const EXTENSION_NAME = chrome.runtime.getManifest().name;
 const CLASS_NAME = EXTENSION_NAME.toLowerCase().replace(/\s+/g, "-"); // "opify"
 
+// fetch thumbnails
 function getThumbnails() {
   // Get all thumbnail images from the Main YouTube page
   const getThumbnailImages = document.querySelectorAll(
@@ -49,5 +50,16 @@ function getThumbnails() {
     });
 
     return isAlreadyProcessed.length == 0;
+  });
+}
+
+// Looks for thumbnails to apply overlay
+function applyOverlayToThumbnails() {
+  thumbnailElements = getThumbnails();
+
+  thumbnailElements.forEach((thumbnailElement) => {
+    // const loops = Math.random() > 0.001 ? 1 : 20;
+    const overlayImageURL = getImageURL("luffy1.png");
+    applyOverlay(thumbnailElement, overlayImageURL);
   });
 }
