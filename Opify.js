@@ -3,6 +3,7 @@
 // add overlay to that thumbnail
 const EXTENSION_NAME = chrome.runtime.getManifest().name;
 const CLASS_NAME = EXTENSION_NAME.toLowerCase().replace(/\s+/g, "-"); // "opify"
+const IMAGES_PATH = "images/";
 
 // fetch thumbnails
 function getThumbnails() {
@@ -53,9 +54,34 @@ function getThumbnails() {
   });
 }
 
+function applyOverlay(thumbnailElement, overlayImageURL) {
+  const overlayImage = document.createElement("img");
+  overlayImage.id = EXTENSION_NAME;
+  overlayImage.src = overlayImageURL;
+
+  // styling
+  overlayImage.style.position = "absolute";
+  overlayImage.style.top = overlayImage.style.left = "50%";
+  overlayImage.style.width = "100%";
+  overlayImage.style.transform = `translate(-50%, -50%)`;
+  overlayImage.style.zIndex = "0";
+
+  const parent = thumbnailElement.parentElement;
+  parent.style.position = "relative";
+
+  // insert the parent thumbnail img before the overlay
+  thumbnailElement.parentElement.insertBefore(
+    overlayImage,
+    thumbnailElement.nextSibling
+  );
+}
+
+function getImageURL(filename) {
+  return chrome.runtime.getURL(`${IMAGES_PATH}${filename}`);
+}
 // Looks for thumbnails to apply overlay
-function applyOverlayToThumbnails() {
-  thumbnailElements = getThumbnails();
+function applyOverlayOverThumbnails() {
+  const thumbnailElements = getThumbnails();
 
   thumbnailElements.forEach((thumbnailElement) => {
     // const loops = Math.random() > 0.001 ? 1 : 20;
