@@ -41,5 +41,13 @@ function getThumbnails() {
 
     // check for chapter thumbnail
     const isChapter = parent.closest("#endpoint") !== null;
+    // check if the thumbnail has already been processed
+    const isAlreadyProcessed = Array.from(parent.children).filter((child) => {
+      const alreadyHasAOverlay = child.classList.contains(CLASS_NAME);
+
+      return alreadyHasAOverlay || isVideoPreview || isChapter;
+    });
+
+    return isAlreadyProcessed.length == 0;
   });
 }
