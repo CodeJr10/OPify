@@ -1,6 +1,3 @@
-// find thumbnail
-// add overlay
-// add overlay to that thumbnail
 const EXTENSION_NAME = chrome.runtime.getManifest().name;
 const CLASS_NAME = EXTENSION_NAME.toLowerCase().replace(/\s+/g, "-"); // "opify"
 const IMAGES_PATH = "images/";
@@ -39,7 +36,7 @@ function getThumbnails() {
     // check for video preview image
     const isVideoPreview =
       parent.closest("#video-preview") !== null ||
-      parent.tagName == "YTD-MOVING-THUMBNAIL_RENDERER";
+      parent.tagName == "YTD-MOVING-THUMBNAIL-RENDERER";
 
     // check for chapter thumbnail
     const isChapter = parent.closest("#endpoint") !== null;
@@ -56,7 +53,7 @@ function getThumbnails() {
 
 function applyOverlay(thumbnailElement, overlayImageURL) {
   const overlayImage = document.createElement("img");
-  overlayImage.id = EXTENSION_NAME;
+  overlayImage.classList.add(CLASS_NAME);
   overlayImage.src = overlayImageURL;
 
   // styling
@@ -89,3 +86,5 @@ function applyOverlayOverThumbnails() {
     applyOverlay(thumbnailElement, overlayImageURL);
   });
 }
+// Run when page has fully loaded
+window.addEventListener("load", applyOverlayOverThumbnails);
