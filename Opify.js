@@ -1,6 +1,8 @@
 // find thumbnail
 // add overlay
 // add overlay to that thumbnail
+const EXTENSION_NAME = chrome.runtime.getManifest().name;
+const CLASS_NAME = EXTENSION_NAME.toLowerCase().replace(/\s+/g, "-"); // "opify"
 
 function getThumbnails() {
   // Get all thumbnail images from the Main YouTube page
@@ -14,7 +16,7 @@ function getThumbnails() {
 
   const allowErrorMargin = 0.02;
 
-  // to avoid overlay on profile pictures, icons etc and only focus on video thumbnails
+  // to avoid overlay on profile pictures, icons, reels etc and only focus on video thumbnails
   const filteredThumbnails = allImages.filter((image) => {
     // skip broken images
     if (image.height === 0) return false;
@@ -27,5 +29,17 @@ function getThumbnails() {
       Math.abs(aspectRatio - targetAspectRatio[1]) < allowErrorMargin;
 
     return isCorrectAspectRatio;
+  });
+
+  return filteredThumbnails.filter((image) => {
+    const parent = image.parentElement;
+
+    // check for video preview image
+    const isVideoPreview =
+      parent.closest("#video-preview") !== null ||
+      parent.tagName == "YTD-MOVING-THUMBNAIL_RENDERER";
+
+    // check for chapter thumbnail
+    const isChapter = parent.closest("#endpoint") !== null;
   });
 }
