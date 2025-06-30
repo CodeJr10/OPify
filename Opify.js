@@ -86,5 +86,17 @@ function applyOverlayOverThumbnails() {
     applyOverlay(thumbnailElement, overlayImageURL);
   });
 }
+
+async function lookForImage(filename) {
+  const testUrl = getImageURL(filename);
+
+  return fetch(testUrl)
+    .then(() => {
+      return true;
+    })
+    .catch((error) => {
+      return false;
+    });
+}
 // Run when page has fully loaded
 window.addEventListener("load", applyOverlayOverThumbnails);
