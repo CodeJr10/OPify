@@ -2,87 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>OPify ⚓</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OPify Settings</title>
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: "Poppins", sans-serif;
-      }
-
-      body {
-        background: linear-gradient(to bottom right, #fff7e6, #fdf5dc);
-        color: #1a1a1a;
-        width: 280px;
-        padding: 1.5rem;
-        border-radius: 12px;
-        border: 3px solid #e0c58f;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      }
-
-      .header {
-        text-align: center;
-        margin-bottom: 1.2rem;
-      }
-
-      .header img {
-        width: 60px;
-        margin-bottom: 0.4rem;
-      }
-
-      .header h1 {
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: #d62828;
-      }
-
-      .status {
-        text-align: center;
-        font-size: 0.95rem;
-        color: #444;
-        margin-bottom: 1rem;
-      }
-
-      .toggle-button {
-        display: block;
-        width: 100%;
-        padding: 0.6rem;
-        font-size: 0.95rem;
-        font-weight: 500;
-        background-color: #f4a261;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
-
-      .toggle-button:hover {
-        background-color: #e76f51;
-      }
-
-      .footer {
-        margin-top: 1.2rem;
-        text-align: center;
-        font-size: 0.75rem;
-        color: #888;
-      }
-    </style>
+    <link rel="icon" type="image/png" href="images/luffy-icon.png" />
   </head>
   <body>
-    <div class="header">
-      <img src="images/strawhat.png" alt="Straw Hat" />
-      <h1>OPify</h1>
+    <div class="popup-container">
+      <img src="images/strawhat-logo.png" alt="OPify Logo" class="logo" />
+      <h1 id="extension-title">OPify Settings</h1>
+
+      <label class="fancy-checkbox">
+        <input type="checkbox" id="disableExtension" class="hidden-checkbox" />
+        <span class="checkmark"></span>
+        <span class="checkbox-text">Enable Extension</span>
+      </label>
+
+      <label class="range-label">
+        Select Character to display:
+        <select>
+          <option value="">Luffy</option>
+          <option value="">Zoro</option>
+          <option value="">Sanji</option>
+          <option value="">Robin</option>
+          <option value="">Nami</option>
+        </select>
+      </label>
+
+      <footer>
+        <a href="https://ko-fi.com/magicjinn" target="_blank">
+          <img src="https://ko-fi.com/favicon.ico" alt="Donate" />
+          Support Me
+        </a>
+      </footer>
     </div>
 
-    <div class="status" id="status">Overlay is ON</div>
-    <button class="toggle-button" id="toggle">Disable Overlay</button>
-
-    <div class="footer">Made with ❤️ for Nakama</div>
+    <script src="popup.js"></script>
   </body>
 </html>
