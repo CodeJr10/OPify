@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "OPify",
-  "version": "0.2.2",
-  "description": "Overlay your boring youtube thumbnails with your favorite One Piece characters.",
+  "version": "0.3.2",
+  "description": "Overlay your boring youtube thumbnails with your favorite One Piece characters (FanMade).",
   "icons": {
     "96": "luffy1.png"
   },
