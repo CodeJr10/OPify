@@ -1,4 +1,5 @@
 // check current user settings
+let extensionIsEnabled;
 function loadSettings() {
   chrome.storage.local.get(
     {
@@ -24,3 +25,9 @@ function saveSettings() {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", loadSettings);
+
+document
+  .getElementById("enableExtension")
+  .addEventListener("input", saveSettings);

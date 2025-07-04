@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
 body {
   font-family: "Poppins", sans-serif;
   background: url("images/background.jpg") no-repeat center center / cover;
@@ -36,6 +38,7 @@ h1 {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+  position: relative;
 }
 
 .fancy-checkbox .hidden-checkbox {
@@ -50,19 +53,26 @@ h1 {
   margin-right: 10px;
   border: 2px solid #ffcc00;
   cursor: pointer;
+  position: relative;
 }
 
-.fancy-checkbox input:checked + .checkmark {
-  background-color: #ffcc00;
+/* Tick mark when checked */
+.fancy-checkbox .checkmark::after {
+  content: "✔";
+  color: #000;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 4px;
+  display: none;
+}
+
+.fancy-checkbox input:checked + .checkmark::after {
+  display: block;
 }
 
 .checkbox-text {
   color: #fff;
-}
-
-.range-label {
-  display: block;
-  margin-bottom: 12px;
 }
 
 input[type="number"] {
@@ -72,6 +82,13 @@ input[type="number"] {
   border: none;
   margin-left: 10px;
   text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 12px;
 }
 
 footer {
