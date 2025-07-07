@@ -6,28 +6,33 @@ function loadSettings() {
       extensionIsEnabled: true, // default value
     },
     (data) => {
-      document.getElementById("enableExtension").checked =
-        data.extensionIsEnabled;
+      const btn = document.getElementById("toggleBtn");
+
+      btn.textContent = data.extensionIsEnabled
+        ? "Disable Overlay"
+        : "Enable Overlay";
+      btn.dataset.enabled = data.extensionIsEnabled;
     }
   );
 }
 
-function saveSettings() {
-  const data = {
-    extensionIsEnabled: document.getElementById("enableExtension").checked,
-  };
+function toggleButtonSetting() {
+  const btn = document.getElementById("toggleBtn");
+  const currentState = btn.dataset.enabled == "true";
+  const newState = !currentState;
 
-  chrome.storage.local.set(data, () => {
+  chrome.storage.local.set({ extensionIsEnabled: newState }, () => {
     if (chrome.runtime.lastError) {
-      console.error("Error saving settings", chrome.runtime.lastError);
+      console.log("Failed to save", chrome.runtime.lastError);
     } else {
-      console.log("Settings are saved");
+      btn.textContent = newState ? "Disable Overlay" : "Enable Overlay";
+      btn.dataset.enabled = newState;
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", loadSettings);
-
 document
-  .getElementById("enableExtension")
-  .addEventListener("input", saveSettings);
+  .getElementById("toggleBtn")
+  .addEventListener("click", toggleButtonSetting);
+
+document.addEventListener("DOMContentLoaded", loadSettings);
