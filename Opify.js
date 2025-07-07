@@ -8,6 +8,7 @@ function getThumbnails() {
   const getThumbnailImages = document.querySelectorAll(
     "ytd-thumbnail a > yt-image > img.yt-core-image"
   );
+  console.log("getThumbnailImages", getThumbnailImages);
 
   const allImages = [...Array.from(getThumbnailImages)];
 
@@ -79,6 +80,7 @@ function getImageURL(filename) {
 // Looks for thumbnails to apply overlay
 function applyOverlayOverThumbnails() {
   const thumbnailElements = getThumbnails();
+  console.log("Thumbnails found:", thumbnailElements.length);
 
   thumbnailElements.forEach((thumbnailElement) => {
     // const loops = Math.random() > 0.001 ? 1 : 20;
@@ -99,4 +101,6 @@ async function lookForImage(filename) {
     });
 }
 // Run when page has fully loaded
-window.addEventListener("load", applyOverlayOverThumbnails);
+window.addEventListener("load", () => {
+  setTimeout(applyOverlayOverThumbnails, 1500);
+});
