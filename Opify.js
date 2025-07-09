@@ -100,7 +100,14 @@ async function lookForImage(filename) {
       return false;
     });
 }
-// Run when page has fully loaded
-window.addEventListener("load", () => {
-  setTimeout(applyOverlayOverThumbnails, 1500);
+
+// only run the script if the extension is enabled
+chrome.storage.local.get({ isExtensionEnabled: true }, (data) => {
+  if (data.isExtensionEnabled) {
+    setTimeout(() => {
+      applyOverlayOverThumbnails();
+    }, 1500);
+  } else {
+    console.log("Opify is disabled");
+  }
 });

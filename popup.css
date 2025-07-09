@@ -117,13 +117,12 @@ input[type="number"] {
   text-align: center;
 }
 
-label {
+p.header {
   font-size: 14px;
   width: 100%;
-  max-width: 240px;
   color: #fffdc1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
