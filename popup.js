@@ -28,8 +28,11 @@ function toggleOverlay() {
   });
 }
 
-document
-  .getElementById("toggleExtension")
-  .addEventListener("click", toggleOverlay);
-document.addEventListener("DOMContentLoaded", loadSettings); // Load settings when the html page is first parsed and loaded before any other scripts run
-// Add click event listener to the button
+// prettier-ignore
+document.addEventListener("DOMContentLoaded", () => {
+  loadSettings(); // load initial state
+
+  // Now that the DOM is ready, it's safe to access the button
+  //prettier-ignore
+  document.getElementById("toggleExtension").addEventListener("click", toggleOverlay);
+});
